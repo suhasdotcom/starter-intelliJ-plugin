@@ -1,0 +1,11 @@
+{
+  "author": "suhas",
+  "dark": true,
+  "name": "my-theme",
+  "colors": {
+    "black": "#0c0000"
+  },
+  "ui": {
+    "Button.arc": 20
+  }
+}

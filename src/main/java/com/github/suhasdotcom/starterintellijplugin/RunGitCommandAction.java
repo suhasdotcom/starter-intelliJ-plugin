@@ -8,6 +8,7 @@ import com.intellij.openapi.ui.Messages;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+
 public class RunGitCommandAction extends AnAction {
 
     @Override

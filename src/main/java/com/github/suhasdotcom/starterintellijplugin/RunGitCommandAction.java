@@ -4,12 +4,20 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
+import git4idea.commands.GitCommand;
+import git4idea.commands.GitLineHandler;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.File;
 
 
 public class RunGitCommandAction extends AnAction {
+    static class EncGitHandler extends GitLineHandler {
+        public EncGitHandler(@Nullable Project project, @NotNull File directory, @NotNull GitCommand command) {
+            super(project, directory, command);
+        }
+    }
 
     @Override
     public void actionPerformed(AnActionEvent e) {
@@ -24,14 +32,15 @@ public class RunGitCommandAction extends AnAction {
             ProcessBuilder processBuilder = new ProcessBuilder("git", "status");
             processBuilder.directory(new java.io.File(project.getBasePath()));
             Process process = processBuilder.start();
-
+            EncGitHandler gh = new EncGitHandler(project, new java.io.File(project.getBasePath()), GitCommand.STATUS);
+            String output = gh.printableCommandLine();
             // Capture and display output
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-            StringBuilder output = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                output.append(line).append("\n");
-            }
+//            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+//            StringBuilder output = new StringBuilder();
+//            String line;s
+//            while ((line = reader.readLine()) != null) {
+//                output.append(line).append("\n");
+//            }
 
             Messages.showInfoMessage(project, output.toString(), "Git Command Output");
         } catch (Exception ex) {

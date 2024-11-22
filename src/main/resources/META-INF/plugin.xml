@@ -1,10 +1,14 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
-<idea-plugin>
+<idea-plugin package="enc4idea" xmlns:xi="http://www.w3.org/2001/XInclude">
     <id>com.github.suhasdotcom.starterintellijplugin</id>
     <name>starter-intelliJ</name>
-    <vendor>suhasdotcom</vendor>
+    <vendor>Vaastav Technologies (OPC) Private Limited</vendor>
+    <category>Version Controls</category>
 
     <depends>com.intellij.modules.platform</depends>
+
+    <!--Included and not module to preserve compatibility (plugin classes/action must be available externally-->
+    <xi:include href="intellij.vcs.git.xml"/>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
     <depends>com.intellij.modules.platform</depends>
@@ -61,6 +65,5 @@
         </action>
     </group>
     </actions>
-
 
 </idea-plugin>

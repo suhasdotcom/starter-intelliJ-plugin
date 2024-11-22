@@ -4,8 +4,12 @@ import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
+import com.intellij.openapi.util.NlsSafe;
+import com.intellij.openapi.util.SystemInfo;
+import com.intellij.openapi.util.text.StringUtil;
 import git4idea.commands.GitCommand;
 import git4idea.commands.GitLineHandler;
+import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -16,6 +20,26 @@ public class RunGitCommandAction extends AnAction {
     static class EncGitHandler extends GitLineHandler {
         public EncGitHandler(@Nullable Project project, @NotNull File directory, @NotNull GitCommand command) {
             super(project, directory, command);
+        }
+
+        @Override
+        public @NlsSafe String printableCommandLine() {
+            return this.getExecutable().isLocal() ? this.unescapeCommandLine(this.myCommandLine.getCommandLineString("enc")) : this.unescapeCommandLine(this.myCommandLine.getCommandLineString((String)null));
+        }
+
+        private @NotNull String unescapeCommandLine(@NotNull String commandLine) {
+            if (escapeNeeded(commandLine)) {
+                return commandLine.replaceAll("\\^\\^\\^\\^", "^");
+            }
+            return commandLine;
+        }
+
+        private boolean escapeNeeded(@NotNull @NonNls String parameter) {
+            return SystemInfo.isWindows && isCmd() && parameter.contains("^");
+        }
+
+        private boolean isCmd() {
+            return StringUtil.toLowerCase(myCommandLine.getExePath()).endsWith("cmd"); //NON-NLS
         }
     }
 

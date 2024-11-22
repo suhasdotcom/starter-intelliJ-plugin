@@ -11,6 +11,7 @@
     <depends>Git4Idea</depends>
     <extensions defaultExtensionNs="com.intellij">
         <themeProvider id="starter-intelliJ" path="themes/my-theme.theme.json"/>
+        <vcs name="EncGit" vcsClass="com.github.suhasdotcom.enc.EncGitVcs" displayName="Enc" administrativeAreaName=".enc"/>
         <toolWindow factoryClass="com.github.suhasdotcom.starterintellijplugin.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
     </extensions>
 
@@ -28,35 +29,37 @@
     </actions>
 
     <actions>
-        <!-- First Operation -->
-        <action id="com.github.suhasdotcom.starterintellijplugin.Operation1"
-                class="com.github.suhasdotcom.starterintellijplugin.Operation1Action"
-                text="Operation 1"
-                description="Performs the first operation"
-                icon="AllIcons.Actions.AddFile">
+        <group id="com.github.suhasdotcom.starterintellijplugin.CustomGroup"
+               text="My Operations"
+               description="Group of custom operations">
             <add-to-group group-id="ToolbarFindGroup" anchor="last"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 1"/>
-        </action>
+            <!-- First Operation -->
+            <action id="com.github.suhasdotcom.starterintellijplugin.Operation1"
+                    class="com.github.suhasdotcom.starterintellijplugin.Operation1Action"
+                    text="Operation 1"
+                    description="Performs the first operation"
+                    icon="AllIcons.Actions.AddFile">
+                <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 1"/>
+            </action>
 
-        <!-- Second Operation -->
-        <action id="com.github.suhasdotcom.starterintellijplugin.Operation2"
-                class="com.github.suhasdotcom.starterintellijplugin.Operation2Action"
-                text="Operation 2"
-                description="Performs the second operation"
-                icon="AllIcons.Nodes.Alias">
-            <add-to-group group-id="ToolbarFindGroup" anchor="last"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 2"/>
-        </action>
+            <!-- Second Operation -->
+            <action id="com.github.suhasdotcom.starterintellijplugin.Operation2"
+                    class="com.github.suhasdotcom.starterintellijplugin.Operation2Action"
+                    text="Operation 2"
+                    description="Performs the second operation"
+                    icon="AllIcons.Nodes.Alias">
+                <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 2"/>
+            </action>
 
-        <!-- Third Operation -->
-        <action id="com.github.suhasdotcom.starterintellijplugin.Operation3"
-                class="com.github.suhasdotcom.starterintellijplugin.Operation3Action"
-                text="Operation 3"
-                description="Performs the third operation"
-                icon="AllIcons.Actions.Collapseall">
-            <add-to-group group-id="ToolbarFindGroup" anchor="last"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 3"/>
+            <!-- Third Operation -->
+            <action id="com.github.suhasdotcom.starterintellijplugin.Operation3"
+                    class="com.github.suhasdotcom.starterintellijplugin.Operation3Action"
+                    text="Operation 3"
+                    description="Performs the third operation"
+                    icon="AllIcons.Actions.Collapseall">
+                <keyboard-shortcut keymap="$default" first-keystroke="ctrl alt 3"/>
         </action>
+    </group>
     </actions>
 
 

@@ -10,7 +10,7 @@ class EncGitVcs(project: Project) : AbstractVcs(project, ID) {
 
     companion object {
         const val ID = "EncGit" // Unique ID for your VCS
-        fun getKey(): VcsKey = createKey("Enc");
+        fun getKey(): VcsKey = createKey(ID);
     }
     private val gitVcs: GitVcs = GitVcs(project)
     override fun getDisplayName(): String = "Enc"

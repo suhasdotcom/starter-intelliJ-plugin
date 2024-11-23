@@ -1,18 +1,17 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin package="enc4idea" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <id>com.github.suhasdotcom.starterintellijplugin</id>
-    <name>starter-intelliJ</name>
+    <id>Enc4Idea</id>
+    <name>Enc</name>
     <vendor>Vaastav Technologies (OPC) Private Limited</vendor>
     <category>Version Controls</category>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>Git4Idea</depends>
 
     <!--Included and not module to preserve compatibility (plugin classes/action must be available externally-->
-    <xi:include href="intellij.vcs.git.xml"/>
+<!--    <xi:include href="META-INF/intellij.vcs.git.xml"/>-->
 
     <resource-bundle>messages.MyBundle</resource-bundle>
-    <depends>com.intellij.modules.platform</depends>
-    <depends>Git4Idea</depends>
     <extensions defaultExtensionNs="com.intellij">
         <themeProvider id="starter-intelliJ" path="themes/my-theme.theme.json"/>
         <vcs name="EncGit" vcsClass="com.github.suhasdotcom.enc.EncGitVcs" displayName="Enc" administrativeAreaName=".enc"/>

@@ -1,7 +1,7 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
-<idea-plugin package="enc4idea" xmlns:xi="http://www.w3.org/2001/XInclude">
-    <id>Enc4Idea</id>
-    <name>Enc</name>
+<idea-plugin package="tig4idea" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <id>Tig4Idea</id>
+    <name>Tig</name>
     <vendor>Vaastav Technologies (OPC) Private Limited</vendor>
     <category>Version Controls</category>
 
@@ -14,7 +14,7 @@
     <resource-bundle>messages.MyBundle</resource-bundle>
     <extensions defaultExtensionNs="com.intellij">
         <themeProvider id="starter-intelliJ" path="themes/my-theme.theme.json"/>
-        <vcs name="EncGit" vcsClass="com.github.suhasdotcom.enc.EncGitVcs" displayName="Enc" administrativeAreaName=".enc"/>
+        <vcs name="TigGit" vcsClass="com.github.suhasdotcom.tig.TigGitVcs" displayName="Tig" administrativeAreaName=".tig"/>
         <toolWindow factoryClass="com.github.suhasdotcom.starterintellijplugin.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
     </extensions>
 

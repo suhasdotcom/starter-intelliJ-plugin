@@ -1,4 +1,4 @@
-package com.github.suhasdotcom.enc
+package com.github.suhasdotcom.tig
 
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vcs.AbstractVcs
@@ -6,14 +6,14 @@ import com.intellij.openapi.vcs.VcsKey
 import com.intellij.openapi.vcs.VcsType
 import git4idea.GitVcs
 
-class EncGitVcs(project: Project) : AbstractVcs(project, ID) {
+class TigGitVcs(project: Project) : AbstractVcs(project, ID) {
 
     companion object {
-        const val ID = "EncGit" // Unique ID for your VCS
+        const val ID = "TigGit" // Unique ID for your VCS
         fun getKey(): VcsKey = createKey(ID);
     }
     private val gitVcs: GitVcs = GitVcs(project)
-    override fun getDisplayName(): String = "Enc"
+    override fun getDisplayName(): String = "Tig"
 
     // Delegate overridden methods to gitVcs
     override fun getCheckinEnvironment() = gitVcs.checkinEnvironment

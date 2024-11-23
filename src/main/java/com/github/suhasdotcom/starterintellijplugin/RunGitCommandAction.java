@@ -2,6 +2,7 @@ package com.github.suhasdotcom.starterintellijplugin;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
+import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.util.NlsSafe;
@@ -9,22 +10,25 @@ import com.intellij.openapi.util.SystemInfo;
 import com.intellij.openapi.util.text.StringUtil;
 import git4idea.commands.GitCommand;
 import git4idea.commands.GitLineHandler;
+import git4idea.config.GitExecutable;
+import git4idea.config.GitExecutableManager;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import com.intellij.openapi.vcs.VcsEnvCustomizer;
 
 import java.io.File;
 
 
 public class RunGitCommandAction extends AnAction {
-    static class EncGitHandler extends GitLineHandler {
-        public EncGitHandler(@Nullable Project project, @NotNull File directory, @NotNull GitCommand command) {
+    static class TigGitHandler extends GitLineHandler {
+        public TigGitHandler(@Nullable Project project, @NotNull File directory, @NotNull GitCommand command) {
             super(project, directory, command);
         }
 
         @Override
         public @NlsSafe String printableCommandLine() {
-            return this.getExecutable().isLocal() ? this.unescapeCommandLine(this.myCommandLine.getCommandLineString("enc")) : this.unescapeCommandLine(this.myCommandLine.getCommandLineString((String)null));
+            return this.getExecutable().isLocal() ? this.unescapeCommandLine(this.myCommandLine.getCommandLineString("tig")) : this.unescapeCommandLine(this.myCommandLine.getCommandLineString((String)null));
         }
 
         private @NotNull String unescapeCommandLine(@NotNull String commandLine) {
@@ -56,7 +60,7 @@ public class RunGitCommandAction extends AnAction {
             ProcessBuilder processBuilder = new ProcessBuilder("git", "status");
             processBuilder.directory(new java.io.File(project.getBasePath()));
             Process process = processBuilder.start();
-            EncGitHandler gh = new EncGitHandler(project, new java.io.File(project.getBasePath()), GitCommand.STATUS);
+            TigGitHandler gh = new TigGitHandler(project, new java.io.File(project.getBasePath()), GitCommand.STATUS);
             String output = gh.printableCommandLine();
             // Capture and display output
 //            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));

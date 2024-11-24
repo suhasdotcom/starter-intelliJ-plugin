@@ -1,5 +1,5 @@
 // Copyright 2000-2023 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license.
-package git4idea.commands
+package enc4idea.commands
 
 import com.github.suhasdotcom.tig.TigGitVcs
 import com.intellij.execution.ExecutionException
@@ -28,6 +28,8 @@ import com.intellij.util.EventDispatcher
 import com.intellij.util.ThrowableConsumer
 import com.intellij.vcsUtil.VcsFileUtil
 import git4idea.GitVcs
+import git4idea.commands.GitCommand
+import git4idea.commands.GitImplBase
 import git4idea.config.GitExecutable
 import git4idea.config.GitExecutableContext
 import git4idea.config.GitExecutableManager

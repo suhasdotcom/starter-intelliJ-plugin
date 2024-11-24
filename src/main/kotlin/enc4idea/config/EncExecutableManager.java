@@ -25,7 +25,7 @@ import java.io.File;
 import java.nio.file.NoSuchFileException;
 
 import static com.intellij.ide.impl.TrustedProjects.isTrusted;
-import static git4idea.config.GitExecutableProblemHandlersKt.showUnsupportedVersionError;
+import static enc4idea.config.EncExecutableProblemHandlersKt.showUnsupportedVersionError;
 
 /**
  * Manager for "current git executable".
@@ -39,13 +39,13 @@ public class EncExecutableManager {
   private static final Logger LOG = Logger.getInstance(EncExecutableManager.class);
 
   private final @NotNull GitExecutableDetector myExecutableDetector = new GitExecutableDetector();
-  private final @NotNull GitExecutableFileTester myVersionCache;
+  private final @NotNull EncExecutableFileTester myVersionCache;
 
   @Topic.AppLevel
   public static final Topic<GitExecutableListener> TOPIC = new Topic<>(GitExecutableListener.class, Topic.BroadcastDirection.NONE);
 
   public EncExecutableManager() {
-    myVersionCache = new GitExecutableFileTester();
+    myVersionCache = new EncExecutableFileTester();
   }
 
 
@@ -137,7 +137,7 @@ public class EncExecutableManager {
    */
   @CalledInAny
   public @NotNull GitVersion getVersion(@NotNull GitExecutable executable) {
-    GitExecutableFileTester.TestResult result = myVersionCache.getCachedResultFor(executable);
+    EncExecutableFileTester.TestResult result = myVersionCache.getCachedResultFor(executable);
     if (result == null || result.getResult() == null) {
       return GitVersion.NULL;
     }
@@ -228,7 +228,7 @@ public class EncExecutableManager {
    */
   @RequiresBackgroundThread(generateAssertion = false)
   public @NotNull GitVersion identifyVersion(@NotNull GitExecutable executable) throws GitVersionIdentificationException {
-    GitExecutableFileTester.TestResult result = myVersionCache.getResultFor(executable);
+    EncExecutableFileTester.TestResult result = myVersionCache.getResultFor(executable);
     if (result.getResult() == null) {
       Exception e = result.getException();
       if (e instanceof NoSuchFileException && executable.getExePath().equals(GitExecutableDetector.getDefaultExecutable())) {

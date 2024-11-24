@@ -33,7 +33,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static git4idea.config.GitExecutableManager.runUnderProgressIfNeeded;
+import static enc4idea.config.EncExecutableManager.runUnderProgressIfNeeded;
 
 /**
  * Tries to detect the path to Git executable.

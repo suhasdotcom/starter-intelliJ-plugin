@@ -1,5 +1,5 @@
 // Copyright 2000-2019 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
-package git4idea.config
+package enc4idea.config
 
 import com.intellij.execution.CommandLineUtil
 import com.intellij.execution.ExecutionException
@@ -167,7 +167,7 @@ sealed class EncExecutable {
                 if (envMap != null) return envMap
             }
 
-            return VcsLocaleHelper.getDefaultLocaleEnvironmentVars("git")
+            return VcsLocaleHelper.getDefaultLocaleEnvironmentVars("enc")
         }
     }
 
